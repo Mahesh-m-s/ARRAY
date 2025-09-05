@@ -1,8 +1,34 @@
 #include <bits/stdc++.h>
 using namespace std;
-//TWO SUM:
+//TWO SUM: leetcode = #1
 //type 1 => two return elemnts exits or not 
 //type 2 => to return elements index
+
+//optimal for only type1 : "TWO POINTER"
+//time = O(n)+O(nlogn) ,for sorting O(nlogn)
+// space = O(n) or if not considering sorting O(1);
+
+void optimal_twosum(int arr[],int n,int target){
+
+        sort(arr,arr+n);
+        int left = 0 ,right = n-1;
+        for(int i=0;i<n;i++){
+            //left is small ,right is big
+            //if sum > target move right-- to reduce sum
+            //if sum < target move left++ to increase sum
+            int sum = arr[left] + arr[right];
+            if(sum < target) left++;
+
+            if(sum > target) right--;
+
+            if(sum == target) {
+                cout<<"yes";
+                return;
+            }
+        }
+        cout<<"no";
+}
+
 
 //brute : two loops 
 //time = o(n*n),space = o(1)
@@ -39,30 +65,6 @@ pair<int,int> better_twosum(int arr[],int n,int target){
     }
 }
 
-//optimal for only type1 : "TWO POINTER"
-//time = O(n)+O(nlogn) ,for sorting O(nlogn)
-// space = O(n) or if not considering sorting O(1);
-
-void optimal_twosum(int arr[],int n,int target){
-
-        sort(arr,arr+n);
-        int left = 0 ,right = n-1;
-        for(int i=0;i<n;i++){
-            //left is small ,right is big
-            //if sum > target move right-- to reduce sum
-            //if sum < target move left++ to increase sum
-            int sum = arr[left] + arr[right];
-            if(sum < target) left++;
-
-            if(sum > target) right--;
-
-            if(sum == target) {
-                cout<<"yes";
-                return;
-            }
-        }
-        cout<<"no";
-}
 
 int main(){
 
